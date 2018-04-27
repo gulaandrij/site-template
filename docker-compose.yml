@@ -1,0 +1,40 @@
+version: '3.1'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: build/Dockerfile
+    container_name: 2fa.app
+    ports:
+     - "83:80"
+    volumes:
+      - .:/var/www/html
+    networks:
+      - backend
+
+  postgres:
+    image: postgres
+    container_name: 2fa.postgres
+    restart: always
+    environment:
+      POSTGRES_DB: 2fa
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - 5432:5432
+    networks:
+      - backend
+
+  adminer:
+    image: adminer
+    container_name: 2fa.adminer
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
+    networks:
+      - backend
+
+networks:
+  backend: ~
