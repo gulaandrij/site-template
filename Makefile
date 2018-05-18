@@ -16,7 +16,7 @@ help:
 
 # Symfony console
 console:
-	@docker exec -i 2fa.app bin/console --ansi $(c)
+	@docker exec -i app.app bin/console --ansi $(c)
 	@make chmod
 
 # Show all running containers
@@ -34,29 +34,29 @@ down:
 
 # Update composer packages
 composer-update:
-	@docker exec -it 2fa.app composer update
-	@docker exec -it 2fa.app bin/console doctrine:cache:clear-metadata
+	@docker exec -it app.app composer update
+	@docker exec -it app.app bin/console doctrine:cache:clear-metadata
 	@make chmod
 
 # Update composer packages
 composer-install:
-	@docker exec -it 2fa.app composer install
-	@docker exec -it 2fa.app bin/console doctrine:cache:clear-metadata
+	@docker exec -it app.app composer install
+	@docker exec -it app.app bin/console doctrine:cache:clear-metadata
 	@make chmod
 
 # Dump autoload
 composer-du:
-	@docker exec -it 2fa.app composer du
+	@docker exec -it app.app composer du
 
 # Pre-commit hooks (code sniffer + code beautifier)
 precommit:
-	@docker exec -i 2fa.app /bin/bash -c "vendor/bin/phpcbf . && vendor/bin/phpcs . && bin/console doctrine:schema:validate --env=dev"
+	@docker exec -i app.app /bin/bash -c "vendor/bin/phpcbf . && vendor/bin/phpcs . && bin/console doctrine:schema:validate --env=dev"
 
 # Pre-commit hooks (code sniffer + code beautifier)
 cbf:
 	@vendor/bin/phpcbf . && \
 	vendor/bin/phpcs . && \
-	docker exec -i 2fa.app /bin/bash -c "bin/console doctrine:schema:validate"
+	docker exec -i app.app /bin/bash -c "bin/console doctrine:schema:validate"
 
 # Run codecepts tasks
 codecept:
@@ -64,14 +64,14 @@ codecept:
 
 # Run unit tests in symfony-app
 unit: before-unit
-	@docker exec -i 2fa.app bin/phpunit --colors=always
+	@docker exec -i app.app bin/phpunit --colors=always
 
 paraunit: before-unit
-	@docker exec -i 2fa.app vendor/bin/paratest -p8 --phpunit bin/phpunit tests
+	@docker exec -i app.app vendor/bin/paratest -p8 --phpunit bin/phpunit tests
 
 # Pre execution before start phpunit
 before-unit:
-	@docker exec -i 2fa.app bash -c "\
+	@docker exec -i app.app bash -c "\
 	bin/console --env=test doctrine:database:drop --force --if-exists > /dev/null && \
 	bin/console --env=test doctrine:database:create > /dev/null && \
 	bin/console --env=test doctrine:cache:clear-metadata > /dev/null && \
@@ -82,7 +82,7 @@ before-unit:
 
 # Rebuild whole db and make seed data
 db-refresh:
-	@docker exec -i 2fa.app bash -c "\
+	@docker exec -i app.app bash -c "\
 	bin/console doctrine:database:drop --force --if-exists --env=dev && \
 	bin/console doctrine:database:create  --env=dev && \
 	bin/console doctrine:migrations:migrate --no-interaction -q --env=dev && \
@@ -93,39 +93,39 @@ db-refresh:
 	chmod -R 0777 ."
 
 db-backup:
-	@docker exec -it 2fa.app bin/console backup-manager:backup development local -c gzip
+	@docker exec -it app.app bin/console backup-manager:backup development local -c gzip
 
 chmod:
-	@docker exec -it 2fa.app chmod -R 0777 .
+	@docker exec -it app.app chmod -R 0777 .
 
 router:
-	@docker exec -it 2fa.app bin/console debug:router
+	@docker exec -it app.app bin/console debug:router
 
 elastic-populate:
-	@docker exec -it 2fa.app bin/console fos:elastica:populate
+	@docker exec -it app.app bin/console fos:elastica:populate
 
 migrate-diff: cache-clear
-	@docker exec -it 2fa.app bin/console doct:migr:diff --formatted
+	@docker exec -it app.app bin/console doct:migr:diff --formatted
 	@make chmod
 
 migrate-up:
-	@docker exec -it 2fa.app bin/console --env=dev doct:migr:migrate --no-interaction
+	@docker exec -it app.app bin/console --env=dev doct:migr:migrate --no-interaction
 
 migrate-down:
-	@docker exec -it 2fa.app bin/console --env=dev doct:migr:migrate prev --no-interaction
+	@docker exec -it app.app bin/console --env=dev doct:migr:migrate prev --no-interaction
 
 blackfire:
-	@docker exec -it 2fa.app blackfire curl $(c)
+	@docker exec -it app.app blackfire curl $(c)
 
 cache-clear: composer-du
-	@docker exec -i 2fa.app bash -c "\
+	@docker exec -i app.app bash -c "\
 	bin/console doctrine:cache:clear-metadata && \
 	rm -rf var/cache/* && \
 	bin/console cache:warmup && \
 	chmod -R 0777 ."
 
 bash:
-	@docker exec -it 2fa.app bash
+	@docker exec -it app.app bash
 
 route:
-	@docker exec -it 2fa.app bin/console debug:router $(c)
+	@docker exec -it app.app bin/console debug:router $(c)
