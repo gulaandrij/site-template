@@ -1,7 +1,4 @@
 {
-    "bacon/bacon-qr-code": {
-        "version": "1.0.3"
-    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -83,41 +80,17 @@
     "egulias/email-validator": {
         "version": "2.1.4"
     },
-    "endroid/installer": {
-        "version": "1.0.3"
-    },
-    "endroid/qr-code": {
-        "version": "3.2.9"
-    },
     "friendsofsymfony/user-bundle": {
         "version": "v2.1.2"
     },
-    "gulaandrij/twofactorauth": {
-        "version": "dev-master"
-    },
-    "guzzlehttp/guzzle": {
-        "version": "6.3.3"
-    },
-    "guzzlehttp/promises": {
-        "version": "v1.3.1"
-    },
-    "guzzlehttp/psr7": {
-        "version": "1.4.2"
-    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
-    },
-    "khanamiryan/qrcode-detector-decoder": {
-        "version": "1"
     },
     "monolog/monolog": {
         "version": "1.23.0"
     },
     "myclabs/deep-copy": {
         "version": "1.7.0"
-    },
-    "myclabs/php-enum": {
-        "version": "1.5.2"
     },
     "nikic/php-parser": {
         "version": "v4.0.1"
@@ -181,9 +154,6 @@
     },
     "psr/container": {
         "version": "1.0.0"
-    },
-    "psr/http-message": {
-        "version": "1.0.1"
     },
     "psr/log": {
         "version": "1.0.2"
