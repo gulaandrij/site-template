@@ -113,6 +113,24 @@
     "jean85/pretty-package-versions": {
         "version": "1.2"
     },
+    "jms/metadata": {
+        "version": "1.6.0"
+    },
+    "jms/parser-lib": {
+        "version": "1.0.0"
+    },
+    "jms/serializer": {
+        "version": "1.12.1"
+    },
+    "jms/serializer-bundle": {
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "fe60ce509ef04a3f40da96e3979bc8d9b13b2372"
+        }
+    },
     "limedeck/phpunit-detailed-printer": {
         "version": "3.2.0"
     },
@@ -161,6 +179,9 @@
     "phar-io/version": {
         "version": "1.0.1"
     },
+    "phpcollection/phpcollection": {
+        "version": "0.5.0"
+    },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
     },
@@ -169,6 +190,9 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "0.4.0"
+    },
+    "phpoption/phpoption": {
+        "version": "1.5.0"
     },
     "phpspec/prophecy": {
         "version": "1.7.6"
@@ -279,7 +303,7 @@
         }
     },
     "symfony/asset": {
-        "version": "v4.0.8"
+        "version": "v4.1.2"
     },
     "symfony/browser-kit": {
         "version": "v4.1.2"
@@ -428,6 +452,9 @@
     "symfony/property-access": {
         "version": "v4.0.8"
     },
+    "symfony/property-info": {
+        "version": "v4.1.2"
+    },
     "symfony/routing": {
         "version": "4.0",
         "recipe": {
@@ -448,6 +475,12 @@
             "version": "3.3",
             "ref": "f8a63faa0d9521526499c0a8f403c9964ecb0527"
         }
+    },
+    "symfony/serializer": {
+        "version": "v4.1.2"
+    },
+    "symfony/serializer-pack": {
+        "version": "v1.0.1"
     },
     "symfony/stopwatch": {
         "version": "v4.0.8"

@@ -11,6 +11,7 @@
         "doctrine/doctrine-migrations-bundle": "^1.3",
         "doctrine/orm": "^2.5.11",
         "friendsofsymfony/user-bundle": "^2.1",
+        "fzaninotto/faker": "^1.7",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "^4.0",
         "symfony/console": "^4.0",
@@ -20,10 +21,11 @@
         "symfony/lts": "^4@dev",
         "symfony/monolog-bundle": "^3.3",
         "symfony/security-bundle": "^4.0",
+        "symfony/serializer-pack": "^1.0",
         "symfony/swiftmailer-bundle": "^3.2",
         "symfony/validator": "^4.0",
         "symfony/yaml": "^4.0",
-        "fzaninotto/faker": "^1.7"
+        "jms/serializer-bundle": "^2.3"
     },
     "require-dev": {
         "brianium/paratest": "^1.1",
