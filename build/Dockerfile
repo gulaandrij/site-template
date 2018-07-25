@@ -1,4 +1,4 @@
-FROM php:7.2-apache
+FROM php:7.2-fpm
 
 RUN apt-get update
 RUN apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev curl bzip2 zip unzip libpq-dev
@@ -17,8 +17,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN pecl install apcu
 RUN docker-php-ext-enable apcu
 
-RUN a2enmod rewrite
+#RUN a2enmod rewrite
 
-ADD build/vhost.conf /etc/apache2/sites-available/000-default.conf
+#ADD build/vhost.conf /etc/apache2/sites-available/000-default.conf
 
 WORKDIR /var/www/html
