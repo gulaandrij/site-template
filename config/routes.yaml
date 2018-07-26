@@ -5,6 +5,7 @@
 app:
     resource: ../src/Controller/
     type: annotation
+    prefix: /api
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

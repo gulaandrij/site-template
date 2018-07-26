@@ -30,6 +30,6 @@ class UserFixture extends Fixture implements ContainerAwareInterface
         $admin->setEnabled(true);
         $admin->setPassword('passwd');
         $admin->setRoles(['ROLE_ADMIN']);
-        $userManager->updateUser($admin, false);
+        $userManager->updateUser($admin);
     }
 }

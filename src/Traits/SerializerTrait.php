@@ -21,6 +21,7 @@ trait SerializerTrait
     /**
      *
      * @param    Serializer $serializer
+     *
      * @required
      */
     public function setSerializer(Serializer $serializer): void
