@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Services\Serializer;
+use App\Service\Serializer;
 
 /**
  * Trait SerializerTrait
