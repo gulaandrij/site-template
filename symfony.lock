@@ -95,6 +95,18 @@
     "egulias/email-validator": {
         "version": "2.1.4"
     },
+    "exsyst/swagger": {
+        "version": "v0.4.1"
+    },
+    "friendsofsymfony/rest-bundle": {
+        "version": "2.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.2",
+            "ref": "258300d52be6ad59b32a888d5ddafbf9638540ff"
+        }
+    },
     "friendsofsymfony/user-bundle": {
         "version": "v2.1.2"
     },
@@ -131,6 +143,18 @@
             "ref": "fe60ce509ef04a3f40da96e3979bc8d9b13b2372"
         }
     },
+    "lcobucci/jwt": {
+        "version": "3.2.4"
+    },
+    "lexik/jwt-authentication-bundle": {
+        "version": "2.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.5",
+            "ref": "509b1542f3180a1cfe248ade8b7bf5092c2d4127"
+        }
+    },
     "limedeck/phpunit-detailed-printer": {
         "version": "3.2.0"
     },
@@ -139,6 +163,18 @@
     },
     "myclabs/deep-copy": {
         "version": "1.7.0"
+    },
+    "namshi/jose": {
+        "version": "7.2.3"
+    },
+    "nelmio/api-doc-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "c8e0c38e1a280ab9e37587a8fa32b251d5bc1c94"
+        }
     },
     "nette/bootstrap": {
         "version": "v2.4.6"
@@ -314,17 +350,8 @@
     "swiftmailer/swiftmailer": {
         "version": "v6.0.2"
     },
-    "symfony/apache-pack": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "c82bead70f9a4f656354a193df7bf0ca2114efa0"
-        }
-    },
     "symfony/asset": {
-        "version": "v4.1.2"
+        "version": "v4.1.4"
     },
     "symfony/browser-kit": {
         "version": "v4.1.2"
@@ -566,10 +593,19 @@
     "webmozart/assert": {
         "version": "1.3.0"
     },
+    "willdurand/jsonp-callback-validator": {
+        "version": "v1.1.0"
+    },
+    "willdurand/negotiation": {
+        "version": "v2.3.1"
+    },
     "zendframework/zend-code": {
         "version": "3.3.0"
     },
     "zendframework/zend-eventmanager": {
         "version": "3.2.1"
+    },
+    "zircote/swagger-php": {
+        "version": "2.0.13"
     }
 }

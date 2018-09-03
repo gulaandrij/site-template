@@ -8,7 +8,7 @@ parameters:
 doctrine:
     dbal:
         # configure these for your database server
-        driver: pdo_pgsql
+        driver: mysql
 
         url: '%env(resolve:DATABASE_URL)%'
     orm:

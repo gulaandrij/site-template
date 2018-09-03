@@ -1,46 +1,20 @@
-version: '2'
+version: '3'
 
 services:
   symfony:
     build:
       context: .
-      dockerfile: build/Dockerfile
-    container_name: app.symfony
+      dockerfile: build/symfony/Dockerfile
+    container_name: ghost_drive.symfony
     ports:
      - "83:80"
     volumes:
       - .:/var/www/html
-#    networks:
-#      - backend
-    links:
-      - postgres
-
-  postgres:
-    image: postgres:9
-    container_name: app.postgres
-    restart: always
-    environment:
-      POSTGRES_DB: app
-      PGDATA: /var/lib/postgresql/data/pgdata
-    ports:
-      - 5432:5432
-#    networks:
-#      - backend
-
-  adminer:
-    image: adminer
-    container_name: app.adminer
-    restart: always
-    depends_on:
-      - postgres
-    ports:
-      - 3308:8080
-#    networks:
-#      - backend
-
+    networks:
+      - backend
   nginx:
     image: nginx:mainline-alpine
-    container_name: app.nginx
+    container_name: ghost_drive.nginx
     env_file:
       - .env
     volumes:
@@ -56,8 +30,33 @@ services:
 #      - 3317:3317
     links:
       - symfony:phphost
-#    networks:
-#      - backend
+    networks:
+      - backend
+  mysql:
+      image: mysql:5.7
+      container_name: ghost_drive.mysql
+      environment:
+        MYSQL_DATABASE: ghost_drive
+        MYSQL_USER: root
+        MYSQL_ROOT_PASSWORD: root
+      volumes:
+        - ~/.docker-mysql-databases/ghost_drive:/var/lib/mysql
+      ports:
+        - "3307:3306"
+      networks:
+        backend:
+          aliases:
+            - mysql-host
 
-#networks:
-#  backend: ~
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: ghost_drive.phpmyadmin
+    environment:
+      PMA_HOST: mysql-host
+    ports:
+      - "3309:80"
+    networks:
+      - backend
+
+networks:
+  backend: ~
