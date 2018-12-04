@@ -5,16 +5,12 @@ namespace App\Traits;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Trait DoctrineCreatedUpdatedTrait
- *
- * @package App\Traits
+ * Trait DoctrineCreatedUpdatedTrait.
  */
 trait DoctrineCreatedTrait
 {
-
     /**
-     *
-     * @var \DateTime $createdAt
+     * @var \DateTime
      *
      * @ORM\Column(type="datetime", name="created_at", nullable=false)
      * @JMS\Groups({"created_at",   "dates"})
@@ -22,9 +18,9 @@ trait DoctrineCreatedTrait
     protected $createdAt;
 
     /**
-     * Gets triggered only on insert
+     * Gets triggered only on insert.
      *
-     * @ORM\PrePersist()
+     * @ORM\PrePersist
      */
     public function onPrePersist(): void
     {
@@ -34,7 +30,6 @@ trait DoctrineCreatedTrait
     }
 
     /**
-     *
      * @return \DateTime
      */
     public function getCreatedAt(): \DateTime

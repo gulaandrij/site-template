@@ -5,16 +5,12 @@ namespace App\Traits;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Trait DoctrineCreatedUpdatedTrait
- *
- * @package App\Traits
+ * Trait DoctrineCreatedUpdatedTrait.
  */
 trait DoctrineCreatedUpdatedTrait
 {
-
     /**
-     *
-     * @var \DateTime $created
+     * @var \DateTime
      *
      * @ORM\Column(type="datetime", name="created_at", nullable=false)
      * @JMS\Groups({"created_at",   "dates"})
@@ -22,8 +18,7 @@ trait DoctrineCreatedUpdatedTrait
     protected $createdAt;
 
     /**
-     *
-     * @var \DateTime $updated
+     * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=false)
      * @JMS\Groups({"updated_at",     "dates"})
@@ -31,9 +26,9 @@ trait DoctrineCreatedUpdatedTrait
     protected $updatedAt;
 
     /**
-     * Gets triggered only on insert
+     * Gets triggered only on insert.
      *
-     * @ORM\PrePersist()
+     * @ORM\PrePersist
      */
     public function onPrePersist(): void
     {
@@ -43,10 +38,10 @@ trait DoctrineCreatedUpdatedTrait
     }
 
     /**
-     * Gets triggered every time on update
+     * Gets triggered every time on update.
      *
-     * @ORM\PreUpdate()
-     * @ORM\PrePersist()
+     * @ORM\PreUpdate
+     * @ORM\PrePersist
      */
     public function onPreUpdate(): void
     {
@@ -54,7 +49,6 @@ trait DoctrineCreatedUpdatedTrait
     }
 
     /**
-     *
      * @return \DateTime
      */
     public function getCreatedAt(): \DateTime
@@ -63,7 +57,6 @@ trait DoctrineCreatedUpdatedTrait
     }
 
     /**
-     *
      * @param \DateTime $createdAt
      */
     public function setCreatedAt(\DateTime $createdAt): void
@@ -72,7 +65,6 @@ trait DoctrineCreatedUpdatedTrait
     }
 
     /**
-     *
      * @return \DateTime
      */
     public function getUpdatedAt(): \DateTime
@@ -81,7 +73,6 @@ trait DoctrineCreatedUpdatedTrait
     }
 
     /**
-     *
      * @param \DateTime $updatedAt
      */
     public function setUpdatedAt(\DateTime $updatedAt): void

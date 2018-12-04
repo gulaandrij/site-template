@@ -5,22 +5,17 @@ namespace App\Traits;
 use App\Service\Serializer;
 
 /**
- * Trait SerializerTrait
- *
- * @package App\Traits
+ * Trait SerializerTrait.
  */
 trait SerializerTrait
 {
-
     /**
-     *
      * @var Serializer
      */
     private $s;
 
     /**
-     *
-     * @param    Serializer $serializer
+     * @param Serializer $serializer
      *
      * @required
      */

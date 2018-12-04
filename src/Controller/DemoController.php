@@ -4,21 +4,18 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Traits\SerializerTrait;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class DemoController
- *
- * @package App\Controller
+ * Class DemoController.
  */
-class DemoController extends Controller
+class DemoController extends FOSRestController
 {
     use SerializerTrait;
 
     /**
-     *
      * @Route("/demo", name="test", methods={"GET"})
      *
      * @return Response
@@ -29,6 +26,6 @@ class DemoController extends Controller
             ->getRepository(User::class)
             ->find(1);
 
-        return new Response($this->s->serialize($admin,['public']));
+        return new Response($this->s->serialize($admin, ['public']));
     }
 }

@@ -7,15 +7,11 @@ use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 
 /**
- * Class Serializer
- *
- * @package App\Services
+ * Class Serializer.
  */
 class Serializer
 {
-
     /**
-     *
      * @var SerializerInterface
      */
     private $serializer;
@@ -50,7 +46,6 @@ class Serializer
     }
 
     /**
-     *
      * @param string $data
      * @param string $type
      *
@@ -58,12 +53,10 @@ class Serializer
      */
     public function deserialize($data, $type)
     {
-
         return $this->serializer->deserialize($data, $type, 'json');
     }
 
     /**
-     *
      * @param array|object $data
      * @param array        $groups
      *

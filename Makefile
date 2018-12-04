@@ -16,7 +16,7 @@ help:
 
 # Symfony console
 console:
-	@docker exec -i ghost_drive.symfony bin/console --ansi $(c)
+	@docker exec -i site-template.symfony bin/console --ansi $(c)
 	@make chmod
 
 # Show all running containers
@@ -37,29 +37,28 @@ down:
 
 # Update composer packages
 composer-update:
-	@docker exec -it ghost_drive.symfony composer update
-	@docker exec -it ghost_drive.symfony bin/console doctrine:cache:clear-metadata
+	@docker exec -it site-template.symfony composer update
+	@docker exec -it site-template.symfony bin/console doctrine:cache:clear-metadata
 	@make chmod
 
 # Update composer packages
 composer-install:
-	@docker exec -it ghost_drive.symfony composer install
-	@docker exec -it ghost_drive.symfony bin/console doctrine:cache:clear-metadata
+	@docker exec -it site-template.symfony composer install
+	@docker exec -it site-template.symfony bin/console doctrine:cache:clear-metadata
 	@make chmod
 
 # Dump autoload
 composer-du:
-	@docker exec -it ghost_drive.symfony composer du
+	@docker exec -it site-template.symfony composer du
 
 # Pre-commit hooks (code sniffer + code beautifier)
 precommit:
-	@docker exec -i ghost_drive.symfony /bin/bash -c "vendor/bin/phpcbf . && vendor/bin/phpcs . && bin/console doctrine:schema:validate --env=dev"
+	@docker exec -i site-template.symfony /bin/bash -c "vendor/bin/phpcbf . && vendor/bin/phpcs . && bin/console doctrine:schema:validate "
 
 # Pre-commit hooks (code sniffer + code beautifier)
 cbf:
-	@vendor/bin/phpcbf . && \
-	vendor/bin/phpcs . && \
-	docker exec -i ghost_drive.symfony /bin/bash -c "bin/console doctrine:schema:validate"
+	@vendor/bin/php-cs-fixer fix src/ && \
+	docker exec -i site-template.symfony /bin/bash -c "bin/console doctrine:schema:validate"
 
 # Run codecepts tasks
 codecept:
@@ -67,67 +66,67 @@ codecept:
 
 # Run unit tests in symfony-app
 unit: before-unit
-	@docker exec -i ghost_drive.symfony bin/phpunit --colors=always
+	@docker exec -i site-template.symfony bin/phpunit --colors=always
 
 paraunit: before-unit
-	@docker exec -i ghost_drive.symfony vendor/bin/paratest -p8 --phpunit bin/phpunit tests
+	@docker exec -i site-template.symfony vendor/bin/paratest -p8 --phpunit bin/phpunit tests
 
 # Pre execution before start phpunit
 before-unit:
-	@docker exec -i ghost_drive.symfony bash -c "\
-	bin/console --env=test doctrine:database:drop --force --if-exists > /dev/null && \
-	bin/console --env=test doctrine:database:create > /dev/null && \
-	bin/console --env=test doctrine:cache:clear-metadata > /dev/null && \
+	@docker exec -i site-template.symfony bash -c "\
+	bin/console  doctrine:database:drop --force --if-exists > /dev/null && \
+	bin/console  doctrine:database:create > /dev/null && \
+	bin/console  doctrine:cache:clear-metadata > /dev/null && \
 	rm -rf var/cache/* > /dev/null && \
-	bin/console --env=test cache:warmup -q > /dev/null && \
-	bin/console --env=test doctrine:migrations:migrate --no-interaction -q > /dev/null && \
-	bin/console --env=test doctrine:fixtures:load -n > /dev/null"
+	bin/console  cache:warmup -q > /dev/null && \
+	bin/console  doctrine:migrations:migrate --no-interaction -q > /dev/null && \
+	bin/console  doctrine:fixtures:load -n > /dev/null"
 
 # Rebuild whole db and make seed data
 db-refresh:
-	@docker exec -i ghost_drive.symfony bash -c "\
-	bin/console doctrine:database:drop --force --if-exists --env=dev && \
-	bin/console doctrine:database:create  --env=dev && \
-	bin/console doctrine:migrations:migrate --no-interaction -q --env=dev && \
-	bin/console doctrine:fixtures:load -n --env=dev && \
+	@docker exec -i site-template.symfony bash -c "\
+	bin/console doctrine:database:drop --force --if-exists  && \
+	bin/console doctrine:database:create   && \
+	bin/console doctrine:migrations:migrate --no-interaction -q  && \
+	bin/console doctrine:fixtures:load -n  && \
 	composer du && \
-	bin/console doctrine:schema:validate --env=dev && \
+	bin/console doctrine:schema:validate  && \
 	chmod -R 0777 ."
 
 db-backup:
-	@docker exec -it ghost_drive.symfony bin/console backup-manager:backup development local -c gzip
+	@docker exec -it site-template.symfony bin/console backup-manager:backup development local -c gzip
 
 chmod:
-	@docker exec -it ghost_drive.symfony chmod -R 0777 .
+	@docker exec -it site-template.symfony chmod -R 0777 .
 
 router:
-	@docker exec -it ghost_drive.symfony bin/console debug:router
+	@docker exec -it site-template.symfony bin/console debug:router
 
 elastic-populate:
-	@docker exec -it ghost_drive.symfony bin/console fos:elastica:populate
+	@docker exec -it site-template.symfony bin/console fos:elastica:populate
 
 migrate-diff: cache-clear
-	@docker exec -it ghost_drive.symfony bin/console doct:migr:diff --formatted
+	@docker exec -it site-template.symfony bin/console make:migr
 	@make chmod
 
 migrate-up:
-	@docker exec -it ghost_drive.symfony bin/console --env=dev doct:migr:migrate --no-interaction
+	@docker exec -it site-template.symfony bin/console  doct:migr:migrate --no-interaction
 
 migrate-down:
-	@docker exec -it ghost_drive.symfony bin/console --env=dev doct:migr:migrate prev --no-interaction
+	@docker exec -it site-template.symfony bin/console  doct:migr:migrate prev --no-interaction
 
 blackfire:
-	@docker exec -it ghost_drive.symfony blackfire curl $(c)
+	@docker exec -it site-template.symfony blackfire curl $(c)
 
 cache-clear: composer-du
-	@docker exec -i ghost_drive.symfony bash -c "\
+	@docker exec -i site-template.symfony bash -c "\
 	bin/console doctrine:cache:clear-metadata && \
 	rm -rf var/cache/* && \
 	bin/console cache:warmup && \
 	chmod -R 0777 ."
 
 bash:
-	@docker exec -it ghost_drive.symfony bash
+	@docker exec -it site-template.symfony bash
 
 route:
-	@docker exec -it ghost_drive.symfony bin/console debug:router $(c)
+	@docker exec -it site-template.symfony bin/console debug:router $(c)

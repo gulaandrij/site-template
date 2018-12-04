@@ -8,15 +8,11 @@ use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * Class AppValidator
- *
- * @package App\AppBundle\Provider
+ * Class AppValidator.
  */
 class AppValidator
 {
-
     /**
-     *
      * @var ValidatorInterface
      */
     private $validator;
@@ -32,7 +28,7 @@ class AppValidator
     }
 
     /**
-     * Validate App requests
+     * Validate App requests.
      *
      * @param mixed           $validateBody
      * @param Collection|null $validateRules
@@ -40,7 +36,6 @@ class AppValidator
      */
     public function validate($validateBody, ?Collection $validateRules = null, ?array $groups = null): void
     {
-
         $violations = $this->validator->validate($validateBody, $validateRules, $groups);
         if (\count($violations)) {
             throw new ApiValidationException(Response::HTTP_BAD_REQUEST, $violations);

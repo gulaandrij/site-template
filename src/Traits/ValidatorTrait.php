@@ -5,22 +5,17 @@ namespace App\Traits;
 use App\Provider\AppValidator;
 
 /**
- * Trait ValidatorTrait
- *
- * @package App\Traits
+ * Trait ValidatorTrait.
  */
 trait ValidatorTrait
 {
-
     /**
-     *
      * @var AppValidator
      */
     private $v;
 
     /**
-     *
-     * @param    AppValidator $validator
+     * @param AppValidator $validator
      * @required
      */
     public function setValidator(AppValidator $validator): void

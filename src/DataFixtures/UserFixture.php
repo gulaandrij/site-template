@@ -9,16 +9,13 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 /**
- * Class UserFixture
- *
- * @package App\DataFixtures
+ * Class UserFixture.
  */
 class UserFixture extends Fixture implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
     /**
-     *
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
@@ -26,7 +23,7 @@ class UserFixture extends Fixture implements ContainerAwareInterface
         $userManager = $this->container->get('fos_user.user_manager');
 
         /**
-         * @var User $admin
+         * @var User
          */
         $admin = $userManager->createUser();
         $admin->setUsername('admin');

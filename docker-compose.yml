@@ -1,11 +1,11 @@
-version: '3'
+version: '3.2'
 
 services:
   symfony:
     build:
       context: .
       dockerfile: build/symfony/Dockerfile
-    container_name: ghost_drive.symfony
+    container_name: site-template.symfony
     ports:
      - "83:80"
     volumes:
@@ -14,7 +14,7 @@ services:
       - backend
   nginx:
     image: nginx:mainline-alpine
-    container_name: ghost_drive.nginx
+    container_name: site-template.nginx
     env_file:
       - .env
     volumes:
@@ -34,7 +34,7 @@ services:
       - backend
   mysql:
       image: mysql:5.7
-      container_name: ghost_drive.mysql
+      container_name: site-template.mysql
       environment:
         MYSQL_DATABASE: ghost_drive
         MYSQL_USER: root
@@ -50,13 +50,34 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: ghost_drive.phpmyadmin
+    container_name: site-template.phpmyadmin
     environment:
       PMA_HOST: mysql-host
     ports:
       - "3309:80"
     networks:
       - backend
+
+  redis:
+    image: redis:3
+    container_name: site-template.redis
+    ports:
+      - 6379:6379
+    logging:
+      driver: none
+    networks:
+      - backend
+
+  redis-commander:
+    image: tenstartups/redis-commander
+    container_name: site-template.redis-commander
+    command: --redis-host redis
+    ports:
+      - 6380:8081
+    networks:
+      - backend
+    logging:
+      driver: none
 
 networks:
   backend: ~
