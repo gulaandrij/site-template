@@ -3,12 +3,16 @@
 #    controller: App\Controller\DefaultController::index
 
 app:
-    resource: ../src/Controller/
-    type: rest
-    prefix: /api
+  resource: ../src/Controller/
+  type: rest
+  prefix: /api
 
 fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+  resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 api_login_check:
-    path: /api/login_check
+  path: /api/login_check
+
+gesdinet_jwt_refresh_token:
+  path:     /api/token/refresh
+  defaults: { _controller: gesdinet.jwtrefreshtoken:refresh }

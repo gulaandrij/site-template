@@ -13,6 +13,7 @@
         "friendsofsymfony/rest-bundle": "dev-master",
         "friendsofsymfony/user-bundle": "^2.1",
         "fzaninotto/faker": "^1.7",
+        "gesdinet/jwt-refresh-token-bundle": "^0.5.3",
         "jms/serializer-bundle": "^3.0",
         "lexik/jwt-authentication-bundle": "^2.5",
         "nelmio/api-doc-bundle": "^3.3",

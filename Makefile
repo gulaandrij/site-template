@@ -130,3 +130,6 @@ bash:
 
 route:
 	@docker exec -it site-template.symfony bin/console debug:router $(c)
+
+token:
+	curl -X POST -H "Content-Type: application/json" http://localhost:1337/api/login_check -d '{"username":"admin","password":"passwd"}'
