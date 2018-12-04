@@ -60,10 +60,6 @@ cbf:
 	@vendor/bin/php-cs-fixer fix src/ && \
 	docker exec -i site-template.symfony /bin/bash -c "bin/console doctrine:schema:validate"
 
-# Run codecepts tasks
-codecept:
-	@cd ./build/AcceptanceTests/ && node_modules/.bin/codeceptjs run --steps && cd ./../..
-
 # Run unit tests in symfony-app
 unit: before-unit
 	@docker exec -i site-template.symfony bin/phpunit --colors=always
@@ -92,9 +88,6 @@ db-refresh:
 	composer du && \
 	bin/console doctrine:schema:validate  && \
 	chmod -R 0777 ."
-
-db-backup:
-	@docker exec -it site-template.symfony bin/console backup-manager:backup development local -c gzip
 
 chmod:
 	@docker exec -it site-template.symfony chmod -R 0777 .
